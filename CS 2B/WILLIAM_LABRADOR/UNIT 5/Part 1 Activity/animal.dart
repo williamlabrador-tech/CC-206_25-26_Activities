@@ -1,15 +1,15 @@
-// CONCEPT 1: Class and Object Creation
+// CONCEPT: Constructing Class
 class Animal {
-  // CONCEPT 2: Attributes / Properties
+  // CONCEPT: Variables and Type Inference (explicit types used)
   String name;
   String kingdom;
   DateTime dob;
   int numLegs;
 
-  // CONCEPT 3: Constructor
+  // CONCEPT: Constructor Shorthand
   Animal(this.name, this.kingdom, this.dob, this.numLegs);
 
-  // CONCEPT 4: Method with Condition (if-else)
+  // CONCEPT: Conditionals (if-else)
   void walk(String direction) {
     if (numLegs <= 0) {
       print("$name can't walk because it has no legs.");
@@ -18,7 +18,7 @@ class Animal {
     }
   }
 
-  // CONCEPT 5: Method Returning Value (MULTILINE FORMAT)
+  // CONCEPT: Multiline String
   String displayInfo() {
     return "Animal Info - \n"
         "Name: $name \n"
@@ -28,17 +28,18 @@ class Animal {
   }
 }
 
-// CONCEPT 6: Inheritance (Pet extends Animal)
+// CONCEPT: Inheritance + Constructing Class
 class Pet extends Animal {
+  // CONCEPT: Variable Initialization
   String? nickname;
   int kindness;
 
-  // CONCEPT 7: Constructor WITHOUT nickname
+  // CONCEPT: Named Constructors
   Pet.withoutNickname(String name, String kingdom, DateTime dob, int numLegs)
       : kindness = 0,
         super(name, kingdom, dob, numLegs);
 
-  // CONCEPT 8: Constructor WITH nickname (sets kindness positive)
+  // CONCEPT: Named Constructors
   Pet.withNickname(
     String name,
     String kingdom,
@@ -48,13 +49,13 @@ class Pet extends Animal {
   ) : kindness = 50,
       super(name, kingdom, dob, numLegs);
 
-  // CONCEPT 9: Method (decreasing value)
+  // CONCEPT: Variables + Assignment
   void kick(int decreaseValue) {
     kindness -= decreaseValue;
     print("You kicked $name. Kindness is now $kindness.");
   }
 
-  // REQUIRED NAME: pet()
+  // CONCEPT: Conditionals
   void pet(int increaseValue) {
     if (kindness < 0) {
       print("Failed to pet $name. Kindness is too low ($kindness).");
@@ -64,13 +65,13 @@ class Pet extends Animal {
     }
   }
 
-  // CONCEPT 10: Custom Method (increase kindness)
+  // CONCEPT: Method + Variable Manipulation
   void feedTreat(int value) {
     kindness += value;
     print("${nickname ?? name} enjoyed a treat! Kindness is now $kindness.");
   }
 
-  // MULTILINE FORMAT for Pet
+  // CONCEPT: Multiline String + Method Override
   @override
   String displayInfo() {
     return "${super.displayInfo()} \n"
@@ -79,8 +80,9 @@ class Pet extends Animal {
   }
 }
 
+// CONCEPT: Entry Point
 void main() {
-  // LIST of Animals (ZOO)
+  // CONCEPT: List and Arrays
   List<Animal> ZOO = [
     Animal("Lion", "Animalia", DateTime(2018, 5, 12), 4),
     Animal("Python", "Animalia", DateTime(2020, 8, 20), 0),
@@ -91,15 +93,15 @@ void main() {
 
   print("=== ZOO ===");
 
-  // Loop through ZOO
-  for (var animal in ZOO) {
+  // CONCEPT: Looping (for-in loop)
+  for (var animal in ZOO) { // CONCEPT: Type Inference (var)
     print(animal.displayInfo());
-    print(""); // ✅ FIXED
+    print("");
     animal.walk("North");
     print("----------------------");
   }
 
-  // LIST of Pets (PET_HOME)
+  // CONCEPT: List and Arrays
   List<Pet> PET_HOME = [
     Pet.withNickname("Dog", "Animalia", DateTime(2021, 1, 1), 4, "Buddy"),
     Pet.withNickname("Cat", "Animalia", DateTime(2022, 2, 2), 4, "Luna"),
@@ -108,23 +110,21 @@ void main() {
 
   print("\n=== PET HOME ===");
 
-  // Display all pet info (NOW MULTILINE)
-  for (var pet in PET_HOME) {
+  // CONCEPT: Looping (for-in loop)
+  for (var pet in PET_HOME) { // CONCEPT: Type Inference (var)
     print(pet.displayInfo());
     print("----------------------");
   }
 
-  // Decrease kindness below 0
   print("\n-- Manipulating Dog --");
   PET_HOME[0].kick(100);
   PET_HOME[0].pet(20);
 
-  // Increase kindness above 1000
   print("\n-- Manipulating Cat --");
   PET_HOME[1].feedTreat(1000);
   PET_HOME[1].pet(50);
 
-  // Additional pet
   print("\n-- Manipulating Parrot --");
   PET_HOME[2].feedTreat(20);
 }
+
